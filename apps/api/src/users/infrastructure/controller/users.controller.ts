@@ -35,4 +35,10 @@ export class UsersController {
       Number(movieId),
     );
   }
+
+  @Get(':id/watched-movies')
+  @ApiParam({ name: 'id', required: true, type: Number })
+  async getWatchedMovies(@Param('id') id: number): Promise<Movie[]> {
+    return await this.usersService.getWatchedMovies(Number(id));
+  }
 }
