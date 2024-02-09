@@ -16,7 +16,7 @@ jobs:
           node-version: "14"
 
       - name: Install dependencies
-        run: cd ./apps/client && npm ci
+        run: cd ./apps/client && npm i
 
       - name: Run lint
         run: cd ./apps/client && npm run lint
@@ -34,7 +34,7 @@ jobs:
           node-version: "14"
 
       - name: Install dependencies
-        run: cd ./apps/api && npm ci
+        run: cd ./apps/api && npm i
 
       - name: Run lint
         run: cd ./apps/api && npm run lint
