@@ -16,7 +16,7 @@ jobs:
           node-version: "18.17.1"
 
       - name: Install dependencies
-        run: cd ./apps/client && npm i
+        run: cd ./apps/client && npm i --ignore-scripts # ignore postinstall turbo prisma
 
       - name: Run lint
         run: cd ./apps/client && npm run lint
