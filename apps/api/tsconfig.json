@@ -9,13 +9,21 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@users/*": ["./src/users/*"],
+      "@auth/*": ["./src/authentication/*"],
+      "@movies/*": ["./src/movies/*"],
+      "@actors/*": ["./src/actors/*"],
+      "@tmdb/*": ["./libs/tmdb/*"]
+    }
   }
 }
