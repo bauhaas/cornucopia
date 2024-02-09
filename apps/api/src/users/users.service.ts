@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
+import { AddMovieToCollectionHandler } from './application/useCase/addMovieToCollection.handler';
 import { UsersRepository } from './infrastructure/repository/users.repository';
-
-import { TmdbService } from 'libs/tmdb/tmdb.service';
-import { MoviesRepository } from 'src/movies/infrastructure/repository/movies.repository';
 
 // This should be a real class/interface representing a user entity
 export type User = any;
@@ -12,8 +10,7 @@ export type User = any;
 export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository,
-    private readonly moviesRepository: MoviesRepository,
-    private readonly tmdbService: TmdbService,
+    private readonly addMovieToCollectionHandler: AddMovieToCollectionHandler,
   ) {}
 
   private readonly users = [
@@ -43,24 +40,6 @@ export class UsersService {
   }
 
   async addMovieToCollection(userId: number, movieId: number): Promise<any> {
-    const user = await this.usersRepository.findOne(userId);
-
-    if (!user) {
-      return false;
-    }
-
-    let movie = await this.moviesRepository.findOne(movieId);
-
-    if (!movie) {
-      const newMovie = await this.tmdbService.getMovie(movieId);
-      movie = await this.moviesRepository.create(newMovie);
-    }
-
-    await this.usersRepository.addMovieToCollection(
-      userId,
-      movie.id,
-      'watched',
-    );
-    return movie;
+    return await this.addMovieToCollectionHandler.execute(userId, movieId);
   }
 }

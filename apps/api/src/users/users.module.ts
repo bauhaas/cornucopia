@@ -1,19 +1,22 @@
-import { Module } from '@nestjs/common';
+import { Module, Provider } from '@nestjs/common';
 
+import { AddMovieToCollectionHandler } from './application/useCase/addMovieToCollection.handler'; // Import AddMovieToCollectionHandler
+import { UsersController } from './infrastructure/controller/users.controller';
 import {
   PrismaService,
   UsersRepository,
 } from './infrastructure/repository/users.repository';
-import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
 import { TmdbModule } from 'libs/tmdb/tmdb.moudle';
-import { MoviesModule } from 'src/movies/movies.module';
+
+const handlers: Provider[] = [AddMovieToCollectionHandler];
+const repositories: Provider[] = [UsersRepository];
 
 @Module({
-  imports: [TmdbModule, MoviesModule],
+  imports: [TmdbModule],
   controllers: [UsersController],
-  exports: [UsersService, UsersRepository],
-  providers: [UsersService, UsersRepository, PrismaService],
+  exports: [UsersService, ...repositories],
+  providers: [UsersService, ...repositories, ...handlers, PrismaService],
 })
 export class UsersModule {}

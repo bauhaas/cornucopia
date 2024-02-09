@@ -2,7 +2,7 @@ import { Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Movie } from '@prisma/client';
 
-import { UsersService } from './users.service';
+import { UsersService } from 'src/users/users.service';
 
 @ApiTags('users')
 @Controller('users')

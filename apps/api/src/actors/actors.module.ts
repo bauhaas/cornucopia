@@ -8,7 +8,6 @@ import { TmdbModule } from 'libs/tmdb/tmdb.moudle';
 @Module({
   imports: [TmdbModule],
   controllers: [ActorsController],
-  exports: [ActorsService],
   providers: [ActorsService],
 })
 export class ActorsModule {}
