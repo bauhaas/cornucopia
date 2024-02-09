@@ -2,6 +2,7 @@ import { Module, Provider } from '@nestjs/common';
 
 import { TmdbModule } from '@tmdb/tmdb.module';
 import { AddMovieToCollectionHandler } from '@users/application/useCase/addMovieToCollection.handler';
+import { GetWatchedMoviesHandler } from '@users/application/useCase/getWatchedMovies.handler';
 import { UsersController } from '@users/infrastructure/controller/users.controller';
 import {
   PrismaService,
@@ -9,7 +10,10 @@ import {
 } from '@users/infrastructure/repository/users.repository';
 import { UsersService } from '@users/users.service';
 
-const handlers: Provider[] = [AddMovieToCollectionHandler];
+const handlers: Provider[] = [
+  AddMovieToCollectionHandler,
+  GetWatchedMoviesHandler,
+];
 const repositories: Provider[] = [UsersRepository];
 
 @Module({

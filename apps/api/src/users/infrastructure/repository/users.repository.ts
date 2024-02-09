@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 
 import {
+  Movie,
   Prisma,
   PrismaClient,
   User as UserPrisma,
@@ -114,5 +115,19 @@ export class UsersRepository {
         status: [status],
       },
     });
+  }
+
+  async getWatchedMovies(userId: number): Promise<Movie[]> {
+    return await this.prisma.userMovie
+      .findMany({
+        where: {
+          id: userId,
+          status: { has: 'watched' },
+        },
+        select: {
+          movie: true,
+        },
+      })
+      .then((movies) => movies.map((movie) => movie.movie));
   }
 }

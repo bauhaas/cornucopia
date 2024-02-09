@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { TmdbClient } from './tmdb-client';
-
-import { Movie } from 'src/movies/infrastructure/repository/movies.repository';
+import { Movie } from '@movies/infrastructure/repository/movies.repository';
+import { TmdbClient } from '@tmdb/tmdb-client';
 
 @Injectable()
 export class TmdbService {

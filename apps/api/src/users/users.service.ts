@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { AddMovieToCollectionHandler } from '@users/application/useCase/addMovieToCollection.handler';
+import { GetWatchedMoviesHandler } from '@users/application/useCase/getWatchedMovies.handler';
 import { UsersRepository } from '@users/infrastructure/repository/users.repository';
 
 // This should be a real class/interface representing a user entity
@@ -11,6 +12,7 @@ export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository,
     private readonly addMovieToCollectionHandler: AddMovieToCollectionHandler,
+    private readonly getWatchedMoviesHandler: GetWatchedMoviesHandler,
   ) {}
 
   private readonly users = [
@@ -41,5 +43,9 @@ export class UsersService {
 
   async addMovieToCollection(userId: number, movieId: number): Promise<any> {
     return await this.addMovieToCollectionHandler.execute(userId, movieId);
+  }
+
+  async getWatchedMovies(userId: number): Promise<any> {
+    return this.usersRepository.getWatchedMovies(userId);
   }
 }
