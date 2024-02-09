@@ -88,8 +88,21 @@ export class PrismaService
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  // async findOne(mail: string): Promise<User | undefined> {
-  async findOne(email: string) {
-    return this.prisma.user.findUnique({ where: { email } });
+  async findOneByMail(email: string) {
+    return await this.prisma.user.findUnique({ where: { email } });
+  }
+
+  async findOne(id: number) {
+    return await this.prisma.user.findUnique({ where: { id } });
+  }
+
+  async addMovieToCollection(userId: number, movieId: number, status: string) {
+    return await this.prisma.userMovie.create({
+      data: {
+        user: { connect: { id: userId } },
+        movie: { connect: { id: movieId } },
+        status: [status],
+      },
+    });
   }
 }

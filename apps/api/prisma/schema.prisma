@@ -12,6 +12,29 @@ generator client {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+  id      Int          @id @default(autoincrement())
+  email   String       @unique
+  movies  UserMovie[]
+}
+
+model Movie {
+  id              Int      @id @default(autoincrement())
+  tmdb_id         String   @unique
+  title           String
+  poster_path     String?
+  backdrop_path   String?
+  release_date    DateTime
+  genres          String[]
+  watchedByUsers  UserMovie[]
+}
+
+model UserMovie {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  movie_id  Int
+  status    String[]
+  user      User     @relation(fields: [user_id], references: [id])
+  movie     Movie    @relation(fields: [movie_id], references: [id])
+  
+  @@unique([user_id, movie_id])
 }

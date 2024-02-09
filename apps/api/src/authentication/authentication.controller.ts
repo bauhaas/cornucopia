@@ -10,10 +10,11 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
-import { LocalAuthGuard } from './local-auth-guard';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
+
+import { AuthenticationService } from './authentication.service';
+import { LocalAuthGuard } from './local-auth-guard';
 
 @ApiTags('authentication')
 @Controller('authentication')
