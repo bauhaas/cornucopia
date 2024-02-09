@@ -9,7 +9,7 @@ export class ActorsController {
   constructor(private readonly actorsService: ActorsService) {}
 
   @Get(':id/filmography')
-  public async getActorFilmography(@Param('id') id: number) {
-    return this.actorsService.getActorFilmography(id);
+  public async getActorFilmography(@Param('id') id: number): Promise<any> {
+    return await this.actorsService.getActorFilmography(id);
   }
 }

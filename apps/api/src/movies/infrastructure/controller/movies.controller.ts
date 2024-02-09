@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { MoviesService } from 'src/movies/movies.service';
@@ -9,7 +9,7 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get(':id')
-  public async getMovie(@Param('id') id: number) {
-    return this.moviesService.getMovie(id);
+  async getMovie(@Param('id') id: number): Promise<any | undefined> {
+    return await this.moviesService.getMovie(id);
   }
 }

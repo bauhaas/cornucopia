@@ -42,10 +42,7 @@ export class UsersService {
     return this.usersRepository.findOneByMail(mail);
   }
 
-  async addMovieToCollection(
-    userId: number,
-    movieId: number,
-  ): Promise<any | undefined> {
+  async addMovieToCollection(userId: number, movieId: number): Promise<any> {
     const user = await this.usersRepository.findOne(userId);
 
     if (!user) {
@@ -64,6 +61,6 @@ export class UsersService {
       movie.id,
       'watched',
     );
-    return true;
+    return movie;
   }
 }

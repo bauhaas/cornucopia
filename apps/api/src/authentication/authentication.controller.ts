@@ -23,8 +23,11 @@ export class AuthenticationController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  async signIn(@Body() signInDto: Record<string, any>): Promise<any> {
+    return await this.authService.signIn(
+      signInDto.username,
+      signInDto.password,
+    );
   }
 
   @Get('github')
@@ -46,7 +49,7 @@ export class AuthenticationController {
 
   @UseGuards(LocalAuthGuard)
   @Post('test')
-  async login(@Request() req: any) {
-    return this.authService.login(req.user);
+  async login(@Request() req: any): Promise<any> {
+    return await this.authService.login(req.user);
   }
 }

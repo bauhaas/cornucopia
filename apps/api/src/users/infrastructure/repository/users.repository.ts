@@ -1,5 +1,10 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { Prisma, PrismaClient } from '@prisma/client';
+import {
+  Prisma,
+  PrismaClient,
+  User as UserPrisma,
+  UserMovie as UserMoviePrisma,
+} from '@prisma/client';
 
 type EventOptions = 'query' | 'info' | 'warn' | 'error';
 
@@ -88,15 +93,19 @@ export class PrismaService
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findOneByMail(email: string) {
+  async findOneByMail(email: string): Promise<UserPrisma | null> {
     return await this.prisma.user.findUnique({ where: { email } });
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<UserPrisma | null> {
     return await this.prisma.user.findUnique({ where: { id } });
   }
 
-  async addMovieToCollection(userId: number, movieId: number, status: string) {
+  async addMovieToCollection(
+    userId: number,
+    movieId: number,
+    status: string,
+  ): Promise<UserMoviePrisma> {
     return await this.prisma.userMovie.create({
       data: {
         user: { connect: { id: userId } },

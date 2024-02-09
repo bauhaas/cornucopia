@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Movie as MoviePrisma } from '@prisma/client';
 
 import { PrismaService } from 'src/users/infrastructure/repository/users.repository';
 
@@ -15,19 +16,19 @@ export type Movie = {
 export class MoviesRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findMany() {
-    return this.prisma.movie.findMany();
+  async findMany(): Promise<MoviePrisma[]> {
+    return await this.prisma.movie.findMany();
   }
 
-  async findOne(id: number) {
-    return this.prisma.movie.findUnique({
+  async findOne(id: number): Promise<MoviePrisma | null> {
+    return await this.prisma.movie.findUnique({
       where: {
         tmdb_id: String(id),
       },
     });
   }
 
-  async create(data: Movie) {
-    return this.prisma.movie.create({ data });
+  async create(data: Movie): Promise<MoviePrisma> {
+    return await this.prisma.movie.create({ data });
   }
 }

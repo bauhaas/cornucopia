@@ -24,7 +24,7 @@ export class TmdbService {
     };
   }
 
-  private transformActorFilmography(data: any) {
+  private transformActorFilmography(data: any): any {
     return data.cast;
   }
 
