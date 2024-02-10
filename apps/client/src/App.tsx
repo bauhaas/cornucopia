@@ -2,6 +2,7 @@ import { NavBar } from "./components/NavBar";
 import { TailwindIndicator } from "./lib/tailwind-indicator";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { Home } from "./pages/home";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
   return (
@@ -22,12 +23,15 @@ function App() {
   );
 }
 
+const queryClient = new QueryClient();
 const Layout = () => {
   return (
     <div>
-      <NavBar />
-      <TailwindIndicator />
-      <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <NavBar />
+        <TailwindIndicator />
+        <Outlet />
+      </QueryClientProvider>
     </div>
   );
 };
