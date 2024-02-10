@@ -1,29 +1,42 @@
-import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { NavBar } from "./components/NavBar";
+import { TailwindIndicator } from "./lib/tailwind-indicator";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { Home } from "./pages/home";
 
 function App() {
-  const [greeting, setGreeting] = useState("");
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.text())
-      .then(setGreeting);
-  }, []);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>{greeting} ddfddd</h1>
+      {/* <NavBar />
+      <div className="text-red-500">Hello world</div>
+      <Button>Click me</Button>
+      <TailwindIndicator /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
+  );
+}
+
+const Layout = () => {
+  return (
+    <div>
+      <NavBar />
+      <TailwindIndicator />
+      <Outlet />
+    </div>
+  );
+};
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
   );
 }
 
