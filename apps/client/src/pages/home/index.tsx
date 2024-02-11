@@ -7,7 +7,7 @@ export const Home = () => {
     queryKey: ["getWatchedMovies"],
     queryFn: async () => {
       return await axios.get(
-        "http://localhost:3000/api/users/1/watched-movies"
+        "https://cornucopia-alpha.vercel.app/api/users/1/watched-movies"
       );
     },
   });
