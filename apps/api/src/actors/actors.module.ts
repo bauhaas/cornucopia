@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 
-import { TmdbModule } from 'libs/tmdb/tmdb.module';
-import { ActorsService } from 'src/actors/actors.service';
-import { ActorsController } from 'src/actors/infrastructure/controller/actors.controller';
+import { ActorsService } from './actors.service';
+import { ActorsController } from './infrastructure/controller/actors.controller';
+import { TmdbModule } from '../../libs/tmdb/tmdb.module';
 
 @Module({
   imports: [TmdbModule],

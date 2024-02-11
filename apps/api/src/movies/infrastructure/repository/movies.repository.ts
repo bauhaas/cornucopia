@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { Movie as MoviePrisma } from '@prisma/client';
 
-import { PrismaService } from 'src/users/infrastructure/repository/users.repository';
+import { PrismaService } from '../../../users/infrastructure/repository/users.repository';
 
 export type Movie = {
   title: string;

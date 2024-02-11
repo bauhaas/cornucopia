@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { ActorsService } from 'src/actors/actors.service';
+import { ActorsService } from '../../actors.service';
 
 @ApiTags('actors')
 @Controller('actors')

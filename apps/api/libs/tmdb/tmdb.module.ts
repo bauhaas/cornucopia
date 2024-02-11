@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { TmdbClient } from 'libs/tmdb/tmdb-client';
-import { TmdbService } from 'libs/tmdb/tmdb.service';
+import { TmdbClient } from './tmdb-client';
+import { TmdbService } from './tmdb.service';
 
 @Module({
   providers: [TmdbService, TmdbClient],

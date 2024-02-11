@@ -3,7 +3,7 @@ import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 import { Movie } from '@prisma/client';
 
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users.service';
 
 @ApiTags('users')
 @Controller('users')

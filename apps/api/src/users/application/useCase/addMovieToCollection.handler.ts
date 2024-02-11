@@ -1,6 +1,6 @@
-import { TmdbService } from 'libs/tmdb/tmdb.service';
-import { MoviesRepository } from 'src/movies/infrastructure/repository/movies.repository';
-import { UsersRepository } from 'src/users/infrastructure/repository/users.repository';
+import { TmdbService } from '../../../../libs/tmdb/tmdb.service';
+import { MoviesRepository } from '../../../movies/infrastructure/repository/movies.repository';
+import { UsersRepository } from '../../infrastructure/repository/users.repository';
 
 export class AddMovieToCollectionHandler {
   constructor(

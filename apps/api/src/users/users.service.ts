@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { AddMovieToCollectionHandler } from 'src/users/application/useCase/addMovieToCollection.handler';
-import { GetWatchedMoviesHandler } from 'src/users/application/useCase/getWatchedMovies.handler';
-import { UsersRepository } from 'src/users/infrastructure/repository/users.repository';
+import { AddMovieToCollectionHandler } from './application/useCase/addMovieToCollection.handler';
+import { GetWatchedMoviesHandler } from './application/useCase/getWatchedMovies.handler';
+import { UsersRepository } from './infrastructure/repository/users.repository';
 
 // This should be a real class/interface representing a user entity
 export type User = any;
