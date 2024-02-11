@@ -11,6 +11,8 @@ export type Movie = {
   poster_path: string;
   backdrop_path: string;
   genres: string[];
+  runtime: number;
+  director: string;
 };
 
 @Injectable()

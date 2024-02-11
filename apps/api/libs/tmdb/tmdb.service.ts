@@ -7,7 +7,12 @@ import { TmdbClient } from '@tmdb/tmdb-client';
 export class TmdbService {
   public tmdbClient: TmdbClient;
 
+  constructor(tmdbClient: TmdbClient) {
+    this.tmdbClient = tmdbClient;
+  }
+
   private transformMovieData(data: any): Movie {
+    console.log(data);
     return {
       tmdb_id: String(data.id),
       title: data.original_title,
@@ -15,6 +20,9 @@ export class TmdbService {
       poster_path: data.poster_path,
       backdrop_path: data.backdrop_path,
       genres: data.genres.map((genre: any) => genre.name),
+      runtime: data.runtime,
+      director: data.credits.crew.find((crew: any) => crew.job === 'Director')
+        ?.name,
       // cast: data.credits.cast.slice(0,10).map((actor: any) => ({
       //   name: actor.name,
       //   id: actor.id,
@@ -28,6 +36,7 @@ export class TmdbService {
   }
 
   public async getMovie(id: number): Promise<Movie> {
+    console.log(id);
     const response = await this.tmdbClient.getMovieWithCredits(id);
     return this.transformMovieData(response.data);
   }

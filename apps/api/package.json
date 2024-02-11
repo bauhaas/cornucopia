@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
-    "build": "prisma generate && nest build",
+    "build": "prisma generate && nest build && tsc-alias -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch --preserveWatchOutput",
@@ -69,6 +69,7 @@
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
