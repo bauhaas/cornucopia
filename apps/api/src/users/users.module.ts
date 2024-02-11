@@ -1,14 +1,14 @@
 import { Module, Provider } from '@nestjs/common';
 
-import { TmdbModule } from '@tmdb/tmdb.module';
-import { AddMovieToCollectionHandler } from '@users/application/useCase/addMovieToCollection.handler';
-import { GetWatchedMoviesHandler } from '@users/application/useCase/getWatchedMovies.handler';
-import { UsersController } from '@users/infrastructure/controller/users.controller';
+import { TmdbModule } from 'libs/tmdb/tmdb.module';
+import { AddMovieToCollectionHandler } from 'src/users/application/useCase/addMovieToCollection.handler';
+import { GetWatchedMoviesHandler } from 'src/users/application/useCase/getWatchedMovies.handler';
+import { UsersController } from 'src/users/infrastructure/controller/users.controller';
 import {
   PrismaService,
   UsersRepository,
-} from '@users/infrastructure/repository/users.repository';
-import { UsersService } from '@users/users.service';
+} from 'src/users/infrastructure/repository/users.repository';
+import { UsersService } from 'src/users/users.service';
 
 const handlers: Provider[] = [
   AddMovieToCollectionHandler,

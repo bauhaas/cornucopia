@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { MoviesService } from '@movies/movies.service';
+import { MoviesService } from 'src/movies/movies.service';
 
 @ApiTags('movies')
 @Controller('movies')

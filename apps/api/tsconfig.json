@@ -16,14 +16,14 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@users/*": ["./src/users/*"],
-      "@auth/*": ["./src/authentication/*"],
-      "@movies/*": ["./src/movies/*"],
-      "@actors/*": ["./src/actors/*"],
-      "@tmdb/*": ["./libs/tmdb/*"]
-    }
+    "noFallthroughCasesInSwitch": true
+    // "paths": {
+    //   "@app/*": ["./src/app/*"],
+    //   "@users/*": ["./src/users/*"],
+    //   "@auth/*": ["./src/authentication/*"],
+    //   "@movies/*": ["./src/movies/*"],
+    //   "@actors/*": ["./src/actors/*"],
+    //   "@tmdb/*": ["./libs/tmdb/*"]
+    // }
   }
 }

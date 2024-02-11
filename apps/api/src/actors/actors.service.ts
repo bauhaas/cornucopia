@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { TmdbService } from '@tmdb/tmdb.service';
+import { TmdbService } from 'libs/tmdb/tmdb.service';
 
 @Injectable()
 export class ActorsService {

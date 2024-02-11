@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "start": "node apps/api/dist/main",
+    "start": "node apps/api/dist/src/main",
     "postinstall": "prisma generate  --schema=./apps/api/prisma/schema.prisma"
   },
   "workspaces": [

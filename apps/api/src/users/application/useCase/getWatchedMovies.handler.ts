@@ -1,5 +1,5 @@
-import { MoviesRepository } from '@movies/infrastructure/repository/movies.repository';
-import { UsersRepository } from '@users/infrastructure/repository/users.repository';
+import { MoviesRepository } from 'src/movies/infrastructure/repository/movies.repository';
+import { UsersRepository } from 'src/users/infrastructure/repository/users.repository';
 
 //TODO transform as GetMoviesCollectionHandler and add label as parameter
 export class GetWatchedMoviesHandler {
