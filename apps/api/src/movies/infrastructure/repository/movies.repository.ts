@@ -13,6 +13,11 @@ export type Movie = {
   genres: string[];
   runtime: number;
   director: string;
+  cast: {
+    name: string;
+    id: number;
+    profile_path: string;
+  }[];
 };
 
 @Injectable()
@@ -31,7 +36,7 @@ export class MoviesRepository {
     });
   }
 
-  async create(data: Movie): Promise<MoviePrisma> {
+  async create(data: Omit<Movie, 'cast'>): Promise<MoviePrisma> {
     return await this.prisma.movie.create({ data });
   }
 }

@@ -93,7 +93,9 @@ export class PrismaService
 
 @Injectable()
 export class UsersRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {
+    console.log('UsersRepository has been instantiated');
+  }
 
   async findOneByMail(email: string): Promise<UserPrisma | null> {
     return await this.prisma.user.findUnique({ where: { email } });

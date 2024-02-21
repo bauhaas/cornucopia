@@ -12,9 +12,12 @@ generator client {
 }
 
 model User {
-  id      Int          @id @default(autoincrement())
-  email   String       @unique
-  movies  UserMovie[]
+  id                      Int           @id @default(autoincrement())
+  email                  String         @unique
+  movies                 UserMovie[]
+  displayTop10           Boolean        @default(true)
+  displayRecentlyWatched Boolean        @default(true)
+  displayWatchlist       Boolean        @default(true)
 }
 
 model Movie {
@@ -26,6 +29,9 @@ model Movie {
   release_date    DateTime
   genres          String[]
   watchedByUsers  UserMovie[]
+  actors          Actor[]  @relation("ActorMovies")
+  runtime         Int
+  director        String
 }
 
 model UserMovie {
@@ -37,4 +43,13 @@ model UserMovie {
   movie     Movie    @relation(fields: [movie_id], references: [id])
   
   @@unique([user_id, movie_id])
+}
+
+model Actor {
+  id        Int      @id @default(autoincrement())
+  tmdb_id   String   @unique
+  name      String
+  profile_path String
+  filmography_tmdb_ids  String[]
+  movies    Movie[]  @relation("ActorMovies")
 }

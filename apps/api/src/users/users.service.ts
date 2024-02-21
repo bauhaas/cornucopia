@@ -11,7 +11,7 @@ export type User = any;
 export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository,
-    private readonly addMovieToCollectionHandler: AddMovieToCollectionHandler,
+    // private readonly addMovieToCollectionHandler: AddMovieToCollectionHandler,
     private readonly getWatchedMoviesHandler: GetWatchedMoviesHandler,
   ) {}
 
@@ -41,9 +41,9 @@ export class UsersService {
     return this.usersRepository.findOneByMail(mail);
   }
 
-  async addMovieToCollection(userId: number, movieId: number): Promise<any> {
-    return await this.addMovieToCollectionHandler.execute(userId, movieId);
-  }
+  // async addMovieToCollection(userId: number, movieId: number): Promise<any> {
+  //   return await this.addMovieToCollectionHandler.execute(userId, movieId);
+  // }
 
   async getWatchedMovies(userId: number): Promise<any> {
     return this.usersRepository.getWatchedMovies(userId);

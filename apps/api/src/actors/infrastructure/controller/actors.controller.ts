@@ -12,4 +12,9 @@ export class ActorsController {
   public async getActorFilmography(@Param('id') id: number): Promise<any> {
     return await this.actorsService.getActorFilmography(id);
   }
+
+  @Get(':id')
+  public async getActor(@Param('id') id: number): Promise<any> {
+    return await this.actorsService.getActor(id);
+  }
 }

@@ -3,12 +3,16 @@ import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 import { Movie } from '@prisma/client';
 
+import { AddMovieToCollectionHandler } from '../../application/useCase/addMovieToCollection.handler';
 import { UsersService } from '../../users.service';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private readonly addMovieToCollectionHandler: AddMovieToCollectionHandler,
+  ) {}
 
   @Get(':id')
   @ApiParam({ name: 'id', required: true, type: Number })
@@ -16,9 +20,10 @@ export class UsersController {
     return await this.usersService.getUser(id);
   }
 
-  @Get('/mail/:id')
-  @ApiParam({ name: 'id', required: true, type: Number })
+  @Get('/mail/:mail')
+  @ApiParam({ name: 'mail', required: true, type: String })
   async getByMail(@Param('mail') mail: string): Promise<any | undefined> {
+    console.log(mail);
     return await this.usersService.getBymMail(mail);
   }
 
@@ -30,7 +35,12 @@ export class UsersController {
     @Param('id') id: number,
     @Query('movieId') movieId: number,
   ): Promise<Movie> {
-    return await this.usersService.addMovieToCollection(
+    console.log(id, movieId);
+    // return await this.usersService.addMovieToCollection(
+    //   Number(id),
+    //   Number(movieId),
+    // );
+    return await this.addMovieToCollectionHandler.execute(
       Number(id),
       Number(movieId),
     );

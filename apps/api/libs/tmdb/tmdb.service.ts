@@ -23,16 +23,20 @@ export class TmdbService {
       runtime: data.runtime,
       director: data.credits.crew.find((crew: any) => crew.job === 'Director')
         ?.name,
-      // cast: data.credits.cast.slice(0,10).map((actor: any) => ({
-      //   name: actor.name,
-      //   id: actor.id,
-      //   profilePath: actor.profile_path,
-      // })),
+      cast: data.credits.cast.map((actor: any) => ({
+        name: actor.name,
+        id: actor.id,
+        profile_path: actor.profile_path,
+      })),
     };
   }
 
   private transformActorFilmography(data: any): any {
-    return data.cast;
+    return data.cast.map((movie: any) => {
+      return {
+        tmdb_id: movie.id,
+      };
+    });
   }
 
   public async getMovie(id: number): Promise<Movie> {

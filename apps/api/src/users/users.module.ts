@@ -9,17 +9,23 @@ import {
 } from './infrastructure/repository/users.repository';
 import { UsersService } from './users.service';
 import { TmdbModule } from '../../libs/tmdb/tmdb.module';
+import { ActorsRepository } from '../actors/infrastructure/repository/actors.repository';
+import { MoviesRepository } from '../movies/infrastructure/repository/movies.repository';
 
 const handlers: Provider[] = [
   AddMovieToCollectionHandler,
   GetWatchedMoviesHandler,
 ];
-const repositories: Provider[] = [UsersRepository];
+const repositories: Provider[] = [
+  UsersRepository,
+  MoviesRepository,
+  ActorsRepository,
+];
 
 @Module({
   imports: [TmdbModule],
   controllers: [UsersController],
   exports: [UsersService, ...repositories],
-  providers: [UsersService, ...repositories, ...handlers, PrismaService],
+  providers: [PrismaService, ...repositories, ...handlers, UsersService],
 })
 export class UsersModule {}
