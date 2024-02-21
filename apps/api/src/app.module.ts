@@ -19,7 +19,7 @@ import { UsersModule } from './users/users.module';
     ActorsModule,
     MoviesModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'client', 'dist'),
+      rootPath: join(__dirname, '../../', 'client', 'dist'), // for vercel
       // rootPath: join(__dirname, '/../../../', 'client', 'dist'),
       exclude: ['/api*'],
     }),
