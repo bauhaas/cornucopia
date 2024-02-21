@@ -4,8 +4,15 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { Home } from "./pages/home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Filmography } from "./pages/filmography";
+import { OpenAPI } from "src/services";
 
 function App() {
+  const isDevMode = import.meta.env.MODE === "development";
+
+  console.log(import.meta.env.MODE);
+  if (isDevMode) OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL;
+  else OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL_PRODUCTION;
+
   return (
     <>
       {/* <NavBar />

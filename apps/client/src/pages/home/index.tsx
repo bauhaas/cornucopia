@@ -12,6 +12,7 @@ import {
 } from "@hello-pangea/dnd";
 import { Hero } from "./hero";
 import { MovieCard } from "./MovieCard";
+import { DefaultService } from "src/services";
 
 export type ColorMap = { [key: string]: string[] };
 
@@ -130,6 +131,14 @@ export const Home = () => {
     },
   });
 
+  const { appControllerGetHello } = DefaultService;
+
+  const { data: test } = useQuery({
+    queryKey: ["getHello"],
+    queryFn: appControllerGetHello,
+  });
+
+  console.log(test, "lol");
   console.log(watchedMovies);
   const [categories, setCategories] = useState({
     "Recently Watched": ["item 1", "item 2", "item 3"],

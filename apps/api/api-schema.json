@@ -1,0 +1,171 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": { "200": { "description": "" } }
+      }
+    },
+    "/api/profile": {
+      "get": {
+        "operationId": "AppController_getProfile",
+        "parameters": [],
+        "responses": { "200": { "description": "" } }
+      }
+    },
+    "/api/authentication/login": {
+      "post": {
+        "operationId": "AuthenticationController_signIn",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["authentication"]
+      }
+    },
+    "/api/authentication/github": {
+      "get": {
+        "operationId": "AuthenticationController_githubLogin",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["authentication"]
+      }
+    },
+    "/api/authentication/github/callback": {
+      "get": {
+        "operationId": "AuthenticationController_githubLoginCallback",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["authentication"]
+      }
+    },
+    "/api/authentication/test": {
+      "post": {
+        "operationId": "AuthenticationController_login",
+        "parameters": [],
+        "responses": { "201": { "description": "" } },
+        "tags": ["authentication"]
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "UsersController_getUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"]
+      }
+    },
+    "/api/users/mail/{mail}": {
+      "get": {
+        "operationId": "UsersController_getByMail",
+        "parameters": [
+          {
+            "name": "mail",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"]
+      }
+    },
+    "/api/users/{id}/watched-movie": {
+      "post": {
+        "operationId": "UsersController_postWatchedMovie",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "movieId",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "201": { "description": "" } },
+        "tags": ["users"]
+      }
+    },
+    "/api/users/{id}/watched-movies": {
+      "get": {
+        "operationId": "UsersController_getWatchedMovies",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"]
+      }
+    },
+    "/api/actors/{id}/filmography": {
+      "get": {
+        "operationId": "ActorsController_getActorFilmography",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["actors"]
+      }
+    },
+    "/api/actors/{id}": {
+      "get": {
+        "operationId": "ActorsController_getActor",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["actors"]
+      }
+    },
+    "/api/movies/{id}": {
+      "get": {
+        "operationId": "MoviesController_getMovie",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["movies"]
+      }
+    }
+  },
+  "info": {
+    "title": "Cornucopia API",
+    "description": "The Cornucopia API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": { "schemas": {} }
+}
