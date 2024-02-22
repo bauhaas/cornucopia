@@ -11,6 +11,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator zod {
+  provider = "zod-prisma-types"
+  output = "./generated/zod"
+  createInputTypes       = false
+  addInputTypeValidation = false
+  addSelectType          = false
+}
+
 model User {
   id                      Int           @id @default(autoincrement())
   email                  String         @unique

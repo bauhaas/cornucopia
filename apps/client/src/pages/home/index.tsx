@@ -119,17 +119,17 @@ interface AccType {
 }
 
 export const Home = () => {
-  const { data: watchedMovies } = useQuery({
-    queryKey: ["getWatchedMovies"],
-    queryFn: async () => {
-      const res = await axios.get(
-        // `${import.meta.env.VITE_BASE_API_URL}/api/users/1/watched-movies`
-        `https://cornucopia-korkrane.vercel.app/api/users/1/watched-movies`
-      );
+  // const { data: watchedMovies } = useQuery({
+  //   queryKey: ["getWatchedMovies"],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       // `${import.meta.env.VITE_BASE_API_URL}/api/users/1/watched-movies`
+  //       `https://cornucopia-korkrane.vercel.app/api/users/1/watched-movies`
+  //     );
 
-      return res.data;
-    },
-  });
+  //     return res.data;
+  //   },
+  // });
 
   const { appControllerGetHello } = DefaultService;
 
@@ -139,7 +139,7 @@ export const Home = () => {
   });
 
   console.log(test, "lol");
-  console.log(watchedMovies);
+  // console.log(watchedMovies);
   const [categories, setCategories] = useState({
     "Recently Watched": ["item 1", "item 2", "item 3"],
     "Watch list": ["item 4"],

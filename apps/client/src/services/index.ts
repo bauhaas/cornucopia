@@ -7,6 +7,8 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { UpdateSettingsRequestDto } from './models/UpdateSettingsRequestDto';
+
 export { ActorsService } from './services/ActorsService';
 export { AuthenticationService } from './services/AuthenticationService';
 export { DefaultService } from './services/DefaultService';

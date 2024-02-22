@@ -4,12 +4,12 @@ import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 
 // import { SavingsModule } from 'apps/savings-app/src/savings.module';
 import * as fs from 'fs';
+import { patchNestJsSwagger } from 'nestjs-zod';
 
 import { AppModule } from './src/app.module';
-// import { patchNestJsSwagger } from 'nestjs-zod';
 
 // Apply nestjs-zod patch for OpenAPI
-// patchNestJsSwagger();
+patchNestJsSwagger();
 
 const createSwaggerDocument = async (): Promise<{
   apiDoc: OpenAPIObject;

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "../components/ui/navigation-menu";
 
@@ -19,7 +18,7 @@ export const NavBar = () => {
           <NavigationMenuList className="space-x-10">
             <NavigationMenuItem>
               <Link to="/" className="text-black dark:text-white font-bold">
-                <NavigationMenuLink>Movies</NavigationMenuLink>
+                Movies
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -27,7 +26,7 @@ export const NavBar = () => {
                 to="/filmography"
                 className="text-black dark:text-white font-bold"
               >
-                <NavigationMenuLink>Filmography</NavigationMenuLink>
+                Filmography
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -35,7 +34,7 @@ export const NavBar = () => {
                 to="/about"
                 className="text-black dark:text-white font-bold"
               >
-                <NavigationMenuLink>About</NavigationMenuLink>
+                About
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>

@@ -33,8 +33,7 @@ export class UsersService {
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    console.log('getUser', id);
-    return this.users.find((user) => user.userId == id);
+    return await this.usersRepository.findOne(id);
   }
 
   async getBymMail(mail: string): Promise<any | undefined> {
@@ -47,5 +46,13 @@ export class UsersService {
 
   async getWatchedMovies(userId: number): Promise<any> {
     return this.usersRepository.getWatchedMovies(userId);
+  }
+
+  async updateUserSettings(id: number, settings: any): Promise<void> {
+    const user = await this.usersRepository.findOne(id);
+
+    if (!user) throw 'User not found';
+
+    await this.usersRepository.updateSettings(user.id, settings);
   }
 }

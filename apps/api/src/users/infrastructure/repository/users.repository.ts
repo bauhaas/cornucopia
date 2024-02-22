@@ -132,4 +132,11 @@ export class UsersRepository {
       })
       .then((movies) => movies.map((movie) => movie.movie));
   }
+
+  async updateSettings(id: number, settings: any): Promise<void> {
+    await this.prisma.user.update({
+      where: { id },
+      data: settings,
+    });
+  }
 }

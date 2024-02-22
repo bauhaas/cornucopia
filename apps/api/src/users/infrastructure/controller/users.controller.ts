@@ -1,8 +1,37 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import {
+  ApiBody,
+  ApiExtraModels,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { Movie } from '@prisma/client';
 
+import {
+  GetUserByIDApiOperation,
+  GetUserByIDOkResponse,
+} from './doc/getUser.doc';
+import {
+  updateSettingsApiBody,
+  updateSettingsApiOperation,
+  updateSettingsNoContentResponse,
+} from './doc/updateSettings.doc';
+import { UpdateSettingsRequestDto } from './dtos/updateSettingsRequest.dto';
 import { AddMovieToCollectionHandler } from '../../application/useCase/addMovieToCollection.handler';
 import { UsersService } from '../../users.service';
 
@@ -15,9 +44,12 @@ export class UsersController {
   ) {}
 
   @Get(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation(GetUserByIDApiOperation)
+  @ApiOkResponse(GetUserByIDOkResponse)
   @ApiParam({ name: 'id', required: true, type: Number })
   async getUser(@Param('id') id: number): Promise<any | undefined> {
-    return await this.usersService.getUser(id);
+    return await this.usersService.getUser(Number(id));
   }
 
   @Get('/mail/:mail')
@@ -50,5 +82,19 @@ export class UsersController {
   @ApiParam({ name: 'id', required: true, type: Number })
   async getWatchedMovies(@Param('id') id: number): Promise<Movie[]> {
     return await this.usersService.getWatchedMovies(Number(id));
+  }
+
+  @Patch(':id/settings')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiParam({ name: 'id', required: true, type: Number })
+  @ApiOperation(updateSettingsApiOperation)
+  @ApiExtraModels(UpdateSettingsRequestDto)
+  @ApiBody(updateSettingsApiBody)
+  @ApiNoContentResponse(updateSettingsNoContentResponse)
+  async updateUserSettings(
+    @Param('id') id: number,
+    @Body() settings: UpdateSettingsRequestDto,
+  ): Promise<void> {
+    await this.usersService.updateUserSettings(Number(id), settings);
   }
 }
