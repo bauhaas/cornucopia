@@ -64,9 +64,13 @@ export const UserProvider = ({ children }: PropsWithChildren): JSX.Element => {
 function App() {
   const isDevMode = import.meta.env.MODE === "development";
 
-  console.log(import.meta.env.MODE);
-  if (isDevMode) OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL;
-  else OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL_PRODUCTION;
+  console.log(import.meta.env.MODE, isDevMode);
+  console.log(import.meta.env.VITE_VERSION);
+  if (isDevMode) {
+    OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL;
+  } else {
+    OpenAPI.BASE = import.meta.env.VITE_BASE_API_URL_PRODUCTION;
+  }
 
   return (
     <>
