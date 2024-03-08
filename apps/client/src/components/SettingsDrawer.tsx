@@ -13,6 +13,9 @@ import { Separator } from "./ui/separator";
 
 import settingsIllustration from "../assets/undraw_personal_settings_re_i6w4.svg";
 import { Badge } from "./ui/badge";
+import { useContext, useState } from "react";
+import { UserContext } from "src/App";
+import { UsersService } from "src/services";
 
 type settingsSectionsType = {
   title: string;
@@ -42,15 +45,15 @@ const settingsSections: settingsSectionsType = [
     title: "Categories display",
     settings: [
       {
-        id: "top-10",
+        id: "displayTop10",
         label: "Top 10",
       },
       {
-        id: "watch-list",
+        id: "displayWatchlist",
         label: "Watch list",
       },
       {
-        id: "recently-watched",
+        id: "displayRecentlyWatched",
         label: "Recently watched",
       },
     ],
@@ -105,18 +108,45 @@ type SettingsSwitchProps = {
   id: string;
   label: string;
   disabled?: boolean;
+  checked: boolean;
 };
 
-const SettingsSwitch = ({ id, label, disabled }: SettingsSwitchProps) => {
+const SettingsSwitch = ({
+  id,
+  label,
+  disabled,
+  checked,
+  onContextUpdate,
+}: SettingsSwitchProps) => {
+  const [isChecked, setIsChecked] = useState(checked);
+
+  const { usersControllerUpdateUserSettings } = UsersService;
+
+  const handleCheckedChange = async (newCheckedValue: boolean) => {
+    setIsChecked(newCheckedValue);
+    await usersControllerUpdateUserSettings({
+      id: 1,
+      requestBody: { [id]: newCheckedValue },
+    });
+    onContextUpdate(id, newCheckedValue);
+  };
+
   return (
     <div className="flex items-center gap-2">
-      <Switch id={id} disabled={disabled} />
+      <Switch
+        id={id}
+        disabled={disabled}
+        checked={isChecked}
+        onCheckedChange={handleCheckedChange}
+      />
       <Label htmlFor={id}>{label}</Label>
     </div>
   );
 };
 
 const SettingsSections = () => {
+  const { user, updateUser } = useContext(UserContext);
+
   return (
     <>
       {settingsSections.map((section) => (
@@ -137,6 +167,8 @@ const SettingsSections = () => {
                 id={setting.id}
                 label={setting.label}
                 disabled={section.disabled}
+                checked={user[setting.id] || false}
+                onContextUpdate={updateUser}
               />
             ))}
           </div>

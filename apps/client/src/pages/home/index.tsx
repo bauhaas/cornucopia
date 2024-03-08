@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Separator } from "../../components/ui/separator";
 
 import {
@@ -13,6 +13,7 @@ import {
 import { Hero } from "./hero";
 import { MovieCard } from "./MovieCard";
 import { DefaultService } from "src/services";
+import { UserContext } from "src/App";
 
 export type ColorMap = { [key: string]: string[] };
 

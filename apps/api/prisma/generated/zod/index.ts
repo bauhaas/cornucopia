@@ -1,61 +1,30 @@
-import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
+import type { Prisma } from '@prisma/client';
 
 /////////////////////////////////////////
 // HELPER FUNCTIONS
 /////////////////////////////////////////
 
+
 /////////////////////////////////////////
 // ENUMS
 /////////////////////////////////////////
 
-export const TransactionIsolationLevelSchema = z.enum([
-  'ReadUncommitted',
-  'ReadCommitted',
-  'RepeatableRead',
-  'Serializable',
-]);
+export const TransactionIsolationLevelSchema = z.enum(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
 
-export const UserScalarFieldEnumSchema = z.enum([
-  'id',
-  'email',
-  'displayTop10',
-  'displayRecentlyWatched',
-  'displayWatchlist',
-]);
+export const UserScalarFieldEnumSchema = z.enum(['id','email','displayTop10','displayRecentlyWatched','displayWatchlist']);
 
-export const MovieScalarFieldEnumSchema = z.enum([
-  'id',
-  'tmdb_id',
-  'title',
-  'poster_path',
-  'backdrop_path',
-  'release_date',
-  'genres',
-  'runtime',
-  'director',
-]);
+export const MovieScalarFieldEnumSchema = z.enum(['id','tmdb_id','title','poster_path','backdrop_path','release_date','genres','runtime','director']);
 
-export const UserMovieScalarFieldEnumSchema = z.enum([
-  'id',
-  'user_id',
-  'movie_id',
-  'status',
-]);
+export const UserMovieScalarFieldEnumSchema = z.enum(['id','user_id','movie_id','status']);
 
-export const ActorScalarFieldEnumSchema = z.enum([
-  'id',
-  'tmdb_id',
-  'name',
-  'profile_path',
-  'filmography_tmdb_ids',
-]);
+export const ActorScalarFieldEnumSchema = z.enum(['id','tmdb_id','name','profile_path','filmography_tmdb_ids']);
 
-export const SortOrderSchema = z.enum(['asc', 'desc']);
+export const SortOrderSchema = z.enum(['asc','desc']);
 
-export const QueryModeSchema = z.enum(['default', 'insensitive']);
+export const QueryModeSchema = z.enum(['default','insensitive']);
 
-export const NullsOrderSchema = z.enum(['first', 'last']);
+export const NullsOrderSchema = z.enum(['first','last']);
 /////////////////////////////////////////
 // MODELS
 /////////////////////////////////////////
@@ -70,9 +39,9 @@ export const UserSchema = z.object({
   displayTop10: z.boolean(),
   displayRecentlyWatched: z.boolean(),
   displayWatchlist: z.boolean(),
-});
+})
 
-export type User = z.infer<typeof UserSchema>;
+export type User = z.infer<typeof UserSchema>
 
 /////////////////////////////////////////
 // MOVIE SCHEMA
@@ -88,9 +57,9 @@ export const MovieSchema = z.object({
   genres: z.string().array(),
   runtime: z.number().int(),
   director: z.string(),
-});
+})
 
-export type Movie = z.infer<typeof MovieSchema>;
+export type Movie = z.infer<typeof MovieSchema>
 
 /////////////////////////////////////////
 // USER MOVIE SCHEMA
@@ -101,9 +70,9 @@ export const UserMovieSchema = z.object({
   user_id: z.number().int(),
   movie_id: z.number().int(),
   status: z.string().array(),
-});
+})
 
-export type UserMovie = z.infer<typeof UserMovieSchema>;
+export type UserMovie = z.infer<typeof UserMovieSchema>
 
 /////////////////////////////////////////
 // ACTOR SCHEMA
@@ -115,6 +84,6 @@ export const ActorSchema = z.object({
   name: z.string(),
   profile_path: z.string(),
   filmography_tmdb_ids: z.string().array(),
-});
+})
 
-export type Actor = z.infer<typeof ActorSchema>;
+export type Actor = z.infer<typeof ActorSchema>
