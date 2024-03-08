@@ -109,6 +109,7 @@ type SettingsSwitchProps = {
   label: string;
   disabled?: boolean;
   checked: boolean;
+  onContextUpdate: any;
 };
 
 const SettingsSwitch = ({

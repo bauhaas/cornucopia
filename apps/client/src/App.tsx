@@ -11,16 +11,18 @@ import { Filmography } from "./pages/filmography";
 import { OpenAPI, UsersService } from "src/services";
 import { PropsWithChildren, useState } from "react";
 
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 interface UserContextType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: any; // Replace 'any' with the type of your user data
+  updateUser: (id: string, newValue: any) => void; // add updateUser here
 }
 
-export const UserContext = createContext<UserContextType | undefined>(
-  undefined
-);
+export const UserContext = createContext<UserContextType>({
+  user: {}, // provide a default user
+  updateUser: () => {}, // provide a default updateUser function
+});
 
 const queryClient = new QueryClient();
 
@@ -35,7 +37,7 @@ export const UserProvider = ({ children }: PropsWithChildren): JSX.Element => {
 
   const [user, setUser] = useState({});
 
-  const updateUser = (id, newValue) => {
+  const updateUser = (id: string, newValue: any) => {
     setUser((prevUser) => ({ ...prevUser, [id]: newValue }));
   };
 
