@@ -19,9 +19,19 @@ import { UsersModule } from './users/users.module';
     ActorsModule,
     MoviesModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'client', 'dist'), // for vercel
+      rootPath:
+        process.env.NODE_ENV === 'development'
+          ? join(__dirname, '/../../../', 'client', 'dist')
+          : join(__dirname, '../../', 'client', 'dist'), // for vercel
       // rootPath: join(__dirname, '/../../../', 'client', 'dist'),
       exclude: ['/api*'],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath:
+        process.env.NODE_ENV === 'development'
+          ? join(__dirname, '..', 'swagger-static')
+          : join(__dirname, '.', 'swagger-static'),
+      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
     }),
   ],
   controllers: [AppController],
