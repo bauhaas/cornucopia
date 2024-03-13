@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { Separator } from "../../components/ui/separator";
 
@@ -13,6 +13,7 @@ import {
 import { Hero } from "./hero";
 import { MovieCard } from "./MovieCard";
 import { DefaultService } from "src/services";
+import axios from "axios";
 // import { UserContext } from "src/App";
 
 export type ColorMap = { [key: string]: string[] };
@@ -131,6 +132,24 @@ export const Home = () => {
   //     return res.data;
   //   },
   // });
+
+  // curl -X 'GET' \
+  // 'http://localhost:3000/api' \
+  // -H 'accept: */*'
+
+  // make an axios request to the server without useQuery
+  axios
+    .get("http://localhost:3000/api", {
+      headers: {
+        accept: "*/*",
+      },
+    })
+    .then((response) => {
+      console.log(response.data, "ddddddddd");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   const { appControllerGetHello } = DefaultService;
 
