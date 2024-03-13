@@ -140,8 +140,6 @@ export const getHeaders = async (
     }
   }
 
-  headers["x-tagpay-oauth2-cookie"] = "1";
-
   return headers;
 };
 
