@@ -26,13 +26,6 @@ import { UsersModule } from './users/users.module';
       // rootPath: join(__dirname, '/../../../', 'client', 'dist'),
       exclude: ['/api*'],
     }),
-    ServeStaticModule.forRoot({
-      rootPath:
-        process.env.NODE_ENV === 'development'
-          ? join(__dirname, '..', 'swagger-static')
-          : join(__dirname, '.', 'swagger-static'),
-      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
-    }),
   ],
   controllers: [AppController],
   providers: [AppService],
